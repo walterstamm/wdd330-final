@@ -1,0 +1,13 @@
+{
+  "name": "wdd330-final",
+  "version": "1.0.0",
+  "description": "wdd 330 final project",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Walter Stamm <wstamm@byui.edu>",
+  "dependencies": {
+    "parcel": "^2.12.0"
+  }
+}
