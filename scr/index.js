@@ -1,3 +1,3 @@
-const helloNode = document.querySelector("#root");
-helloNode.textContent = "Hello World";
+import App from "./App.js";
 
+document.getElementById("root").appendChild(App());
