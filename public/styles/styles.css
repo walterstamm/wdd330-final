@@ -1,0 +1,68 @@
+/* Importa la fuente Nunito desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #F0F0F0; /* Off-White */
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.header {
+  background-color: #A8D5BA; /* Olive Green */
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 2em;
+}
+
+.main {
+  padding: 20px;
+}
+
+.footer {
+  background-color: #A8D5BA; /* Olive Green */
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.recipe-search {
+  margin-bottom: 20px;
+}
+
+.recipe-search input {
+  padding: 10px;
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.recipe-search button {
+  background-color: #A8D5BA; /* Olive Green */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.recipe-search button:hover {
+  background-color: #8BBF9F; /* Darker Olive Green */
+}
+
+#results {
+  margin-top: 20px;
+}
+
+.recipe {
+  background-color: #E3D5B3; /* Light Brown */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
