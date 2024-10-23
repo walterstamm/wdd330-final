@@ -1,4 +1,6 @@
 import { createElement } from "../utils.js";
+import { getRecipeForCards } from "../data/spoonacularService.js";
+
 
 function createRecipeCard(recipe) {
   const card = createElement("div", { className: "recipe-card" });
@@ -16,14 +18,20 @@ function createRecipeCard(recipe) {
   return card;
 }
 
-function displayRecipeCards(recipes) {
+ async function displayRecipeCards() {
+  let recipes = [] 
+  recipes = await getRecipeForCards()
   const container = document.getElementById("recipe-cards");
   container.innerHTML = ""; 
 
   recipes.forEach((recipe) => {
+    console.log(recipe, "recipe");
     const card = createRecipeCard(recipe);
     container.appendChild(card);
   });
 }
+
+
+
 
 export { displayRecipeCards };

@@ -1,8 +1,9 @@
 import { createElement } from "../utils.js";
 import RecipeSearch from "./RecipeSearch.js";
 import { displayRecipeCards } from "./RecipeCard.js";
+import { getRecipeForCards } from "../data/spoonacularService.js";
 
-function Main() {
+ function Main() {
   let main = createElement("main", { className: "main" });
   let recipeSearch = RecipeSearch();
 
@@ -18,7 +19,7 @@ function Main() {
   ];
 
   window.addEventListener('DOMContentLoaded', () => {
-    displayRecipeCards(exampleRecipes);
+    displayRecipeCards();
   });
 
 
