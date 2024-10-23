@@ -7,6 +7,8 @@ export async function searchRecipesByIngredients(ingredients) {
   return data;
 }
 
+
+
 export async function getRecipeForCards() {
   const response = await fetch(`${BASE_URL}/recipes/random?number=10&apiKey=${API_KEY}`);
   const data = await response.json();
