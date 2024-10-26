@@ -1,5 +1,6 @@
 import { createElement } from "../utils.js";
 import { searchRecipesByIngredients } from "../data/spoonacularService.js";
+import { createRecipeCardSearch } from "./RecipeCardSearch.js";
 
 function RecipeSearch() {
   const container = createElement("div", { className: "recipe-search" });
@@ -14,11 +15,7 @@ function RecipeSearch() {
   button.addEventListener("click", async () => {
     const ingredients = input.value;
     const recipes = await searchRecipesByIngredients(ingredients);
-    
-    const main = document.querySelector("main");
-    main.innerHTML = "";
-
-    main.appendChild(displayRecipes(recipes));
+    displayRecipes(recipes);
 
   });
 
@@ -30,18 +27,26 @@ function RecipeSearch() {
 
 function displayRecipes(recipes) {
 
-  // const resultsContainer = document.getElementById("results");
-  const resultsContainer = createElement("div", { id: "results" });
-  resultsContainer.innerHTML = ""; // Clear previous results
+  const main = document.querySelector("main");
+  main.innerHTML = "";
+  const recipeCardsContainer = createElement("div", { id: "recipe-cards", className: "recipe-cards-container" });
+  recipeCardsContainer.innerHTML = ""; // Clear previous results
 
-  recipes.forEach((recipe) => {
-    const recipeElement = createElement("div", { className: "recipe" });
-    recipeElement.textContent = recipe.title;
-    recipeElement.image = recipe.image;
-    resultsContainer.appendChild(recipeElement);
+  const returnButton = createElement("button", { textContent: "Return", className: "return-button" });
+  returnButton.addEventListener("click", () => {
+    window.location.href = "/index.html";
   });
 
-  return resultsContainer;
+  recipes.forEach((recipe) => {
+    const card = createRecipeCardSearch(recipe);
+      recipeCardsContainer.appendChild(card);
+  });
+
+  let recipeSearch = RecipeSearch();
+
+  main.appendChild(recipeSearch);
+  main.appendChild(returnButton);
+  main.appendChild(recipeCardsContainer);
 }
 
 export default RecipeSearch;

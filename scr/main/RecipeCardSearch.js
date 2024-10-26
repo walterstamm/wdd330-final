@@ -2,7 +2,7 @@ import { createElement } from "../utils.js";
 import { getRecipeForCards } from "../data/spoonacularService.js";
 
 
-function createRecipeCard(recipe) {
+export function createRecipeCardSearch(recipe) {
   const card = createElement("div", { className: "recipe-card" });
 
   const image = createElement("img", { src: recipe.image, alt: recipe.title });
@@ -20,6 +20,8 @@ function createRecipeCard(recipe) {
       window.location.href = "/index.html";
     });
 
+    console.log(recipe);
+    
     const recipeDetails = createElement("div", { className: "recipe-details" });
     const recipeTitle = createElement("h2", { textContent: recipe.title });
     const recipeImage = createElement("img", { src: recipe.image, alt: recipe.title });
@@ -43,9 +45,10 @@ function createRecipeCard(recipe) {
 }
 
 
- async function displayRecipeCards() {
+ async function displayRecipeCardsSearch() {
   let recipes = [] 
   recipes = await getRecipeForCards() 
+  console.log(recipes);
   const container = document.getElementById("recipe-cards");
   container.innerHTML = ""; 
 
@@ -55,7 +58,6 @@ function createRecipeCard(recipe) {
   });
 }
 
+export { displayRecipeCardsSearch };
 
 
-
-export { displayRecipeCards };

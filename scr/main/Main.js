@@ -9,8 +9,6 @@ import { displayRecipeCards } from "./RecipeCard.js";
   const recipeCardsContainer = createElement("div", { id: "recipe-cards", className: "recipe-cards-container" });
 
 
-
-
   main.appendChild(recipeSearch);
   main.appendChild(recipeCardsContainer);
 

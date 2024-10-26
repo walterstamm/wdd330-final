@@ -4,9 +4,16 @@ const BASE_URL = process.env.URL_BASE;
 export async function searchRecipesByIngredients(ingredients) {
   const response = await fetch(`${BASE_URL}/recipes/findByIngredients?ingredients=${ingredients}&apiKey=${API_KEY}`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
+
+export async function searchRecipeById(id) {
+  const response = await fetch(`${BASE_URL}/recipes/${id}/information?apiKey=${API_KEY}`);
+  const data = await response.json();
+  return data;
+}
 
 
 export async function getRecipeForCards() {
