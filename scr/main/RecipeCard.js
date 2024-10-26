@@ -20,18 +20,27 @@ function createRecipeCard(recipe) {
       window.location.href = "/index.html";
     });
 
-    
+
+    const ingredients = recipe.extendedIngredients.map(ingredient => ingredient.original);
+
+    const listIngredients = createElement("ul", {className: "ingredients-list"});
+    ingredients.map(ingredient => {
+      const listItem = createElement("li", {textContent: ingredient});
+      listIngredients.appendChild(listItem);
+    });
 
     const recipeDetails = createElement("div", { className: "recipe-details" });
     const recipeTitle = createElement("h2", { textContent: recipe.title });
     const recipeImage = createElement("img", { src: recipe.image, alt: recipe.title });
-    // const recipeDescription = createElement("div", { textContent: recipe.instructions ||   "Description not available", className: "recipe-description" });
     const recipeDescription = createElement("div", {className: "recipe-description" });
-    const h2 = createElement("h2", {textContent: "Instructions"});
-    const p = createElement("div", {textContent: recipe.instructions || "Description not available"});
+    const h2Instructions = createElement("h2", {textContent: "Instructions"});
+    const pInstructions = createElement("div", {textContent: recipe.instructions || "Description not available"});
+    const h2Ingredients = createElement("h2", {textContent: "Ingredients"});
 
-    recipeDescription.appendChild(h2);
-    recipeDescription.appendChild(p);
+    recipeDescription.appendChild(h2Ingredients);
+    recipeDescription.appendChild(listIngredients);
+    recipeDescription.appendChild(h2Instructions);
+    recipeDescription.appendChild(pInstructions);
 
     recipeDetails.appendChild(returnButton);
 
