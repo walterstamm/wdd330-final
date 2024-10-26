@@ -104,3 +104,38 @@ body {
   .recipe-card:hover {
     transform: scale(1.05);
   }
+
+
+  /* Recipe Details */
+
+.recipe-details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-description {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+
+/* Return Button */
+
+.return-button {
+  margin-top: 20px;
+  background-color: #A8D5BA; /* Olive Green */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.return-button:hover {
+  background-color: #8BBF9F; /* Darker Olive Green */
+}
+

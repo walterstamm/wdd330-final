@@ -14,7 +14,12 @@ function RecipeSearch() {
   button.addEventListener("click", async () => {
     const ingredients = input.value;
     const recipes = await searchRecipesByIngredients(ingredients);
-    displayRecipes(recipes);
+    
+    const main = document.querySelector("main");
+    main.innerHTML = "";
+
+    main.appendChild(displayRecipes(recipes));
+
   });
 
   container.appendChild(input);
@@ -24,14 +29,19 @@ function RecipeSearch() {
 }
 
 function displayRecipes(recipes) {
-  const resultsContainer = document.getElementById("results");
+
+  // const resultsContainer = document.getElementById("results");
+  const resultsContainer = createElement("div", { id: "results" });
   resultsContainer.innerHTML = ""; // Clear previous results
 
   recipes.forEach((recipe) => {
     const recipeElement = createElement("div", { className: "recipe" });
     recipeElement.textContent = recipe.title;
+    recipeElement.image = recipe.image;
     resultsContainer.appendChild(recipeElement);
   });
+
+  return resultsContainer;
 }
 
 export default RecipeSearch;

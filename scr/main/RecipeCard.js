@@ -12,20 +12,45 @@ function createRecipeCard(recipe) {
   card.appendChild(title);
 
   card.addEventListener("click", () => {
-    alert(`You clicked on ${recipe.title}`);
+    const main = document.querySelector("main");
+    main.innerHTML = ""; 
+
+    const returnButton = createElement("button", { textContent: "Return", className: "return-button" });
+    returnButton.addEventListener("click", () => {
+      window.location.href = "/index.html";
+    });
+
+    const recipeDetails = createElement("div", { className: "recipe-details" });
+    const recipeTitle = createElement("h2", { textContent: recipe.title });
+    const recipeImage = createElement("img", { src: recipe.image, alt: recipe.title });
+    // const recipeDescription = createElement("div", { textContent: recipe.instructions ||   "Description not available", className: "recipe-description" });
+    const recipeDescription = createElement("div", {className: "recipe-description" });
+    const h2 = createElement("h2", {textContent: "Instructions"});
+    const p = createElement("div", {textContent: recipe.instructions || "Description not available"});
+
+    recipeDescription.appendChild(h2);
+    recipeDescription.appendChild(p);
+
+    recipeDetails.appendChild(returnButton);
+
+    recipeDetails.appendChild(recipeTitle);
+    recipeDetails.appendChild(recipeImage);
+    recipeDetails.appendChild(recipeDescription);
+    main.appendChild(recipeDetails);
   });
 
   return card;
 }
 
+
  async function displayRecipeCards() {
   let recipes = [] 
-  recipes = await getRecipeForCards()
+  recipes = await getRecipeForCards() 
+  console.log(recipes);
   const container = document.getElementById("recipe-cards");
   container.innerHTML = ""; 
 
   recipes.forEach((recipe) => {
-    console.log(recipe, "recipe");
     const card = createRecipeCard(recipe);
     container.appendChild(card);
   });
