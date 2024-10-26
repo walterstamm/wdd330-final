@@ -15,7 +15,7 @@ function RecipeSearch() {
   button.addEventListener("click", async () => {
     const ingredients = input.value;
     const recipes = await searchRecipesByIngredients(ingredients);
-    displayRecipes(recipes);
+    displayRecipes(recipes,ingredients);
 
   });
 
@@ -25,12 +25,12 @@ function RecipeSearch() {
   return container;
 }
 
-function displayRecipes(recipes) {
+function displayRecipes(recipes,searchWords) {
 
   const main = document.querySelector("main");
   main.innerHTML = "";
   const recipeCardsContainer = createElement("div", { id: "recipe-cards", className: "recipe-cards-container" });
-  recipeCardsContainer.innerHTML = ""; // Clear previous results
+  recipeCardsContainer.innerHTML = ""; 
 
   const returnButton = createElement("button", { textContent: "Return", className: "return-button" });
   returnButton.addEventListener("click", () => {
@@ -42,9 +42,12 @@ function displayRecipes(recipes) {
       recipeCardsContainer.appendChild(card);
   });
 
-  let recipeSearch = RecipeSearch();
+  const recipeSearch = RecipeSearch();
+  const words = createElement("h2", {textContent: `Recipes with ${searchWords}`, className: "title"});
+
 
   main.appendChild(recipeSearch);
+  main.appendChild(words);
   main.appendChild(returnButton);
   main.appendChild(recipeCardsContainer);
 }

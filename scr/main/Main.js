@@ -8,8 +8,10 @@ import { displayRecipeCards } from "./RecipeCard.js";
 
   const recipeCardsContainer = createElement("div", { id: "recipe-cards", className: "recipe-cards-container" });
 
+  const title = createElement("h1", {textContent: "It’s Your Lucky Day! Check Out These Recipes Just for You", className: "title"});
 
   main.appendChild(recipeSearch);
+  main.appendChild(title);
   main.appendChild(recipeCardsContainer);
 
   window.addEventListener('DOMContentLoaded', () => {

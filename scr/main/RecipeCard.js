@@ -20,6 +20,8 @@ function createRecipeCard(recipe) {
       window.location.href = "/index.html";
     });
 
+    
+
     const recipeDetails = createElement("div", { className: "recipe-details" });
     const recipeTitle = createElement("h2", { textContent: recipe.title });
     const recipeImage = createElement("img", { src: recipe.image, alt: recipe.title });

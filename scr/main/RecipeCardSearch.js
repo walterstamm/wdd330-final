@@ -1,5 +1,6 @@
 import { createElement } from "../utils.js";
 import { getRecipeForCards } from "../data/spoonacularService.js";
+import { searchRecipeById } from "../data/spoonacularService.js";
 
 
 export function createRecipeCardSearch(recipe) {
@@ -11,24 +12,27 @@ export function createRecipeCardSearch(recipe) {
   card.appendChild(image);
   card.appendChild(title);
 
-  card.addEventListener("click", () => {
+  // when click on the card to see the recipe details
+  card.addEventListener("click", async () => {
     const main = document.querySelector("main");
     main.innerHTML = ""; 
 
+    const recipeInfo = await searchRecipeById(recipe.id);
+
+    // return button to return to the main page
     const returnButton = createElement("button", { textContent: "Return", className: "return-button" });
     returnButton.addEventListener("click", () => {
       window.location.href = "/index.html";
     });
 
-    console.log(recipe);
     
     const recipeDetails = createElement("div", { className: "recipe-details" });
-    const recipeTitle = createElement("h2", { textContent: recipe.title });
-    const recipeImage = createElement("img", { src: recipe.image, alt: recipe.title });
+    const recipeTitle = createElement("h2", { textContent: recipeInfo.title });
+    const recipeImage = createElement("img", { src: recipeInfo.image, alt: recipeInfo.title });
     // const recipeDescription = createElement("div", { textContent: recipe.instructions ||   "Description not available", className: "recipe-description" });
     const recipeDescription = createElement("div", {className: "recipe-description" });
     const h2 = createElement("h2", {textContent: "Instructions"});
-    const p = createElement("div", {textContent: recipe.instructions || "Description not available"});
+    const p = createElement("div", {textContent: recipeInfo.instructions || "Description not available"});
 
     recipeDescription.appendChild(h2);
     recipeDescription.appendChild(p);
@@ -43,21 +47,5 @@ export function createRecipeCardSearch(recipe) {
 
   return card;
 }
-
-
- async function displayRecipeCardsSearch() {
-  let recipes = [] 
-  recipes = await getRecipeForCards() 
-  console.log(recipes);
-  const container = document.getElementById("recipe-cards");
-  container.innerHTML = ""; 
-
-  recipes.forEach((recipe) => {
-    const card = createRecipeCard(recipe);
-    container.appendChild(card);
-  });
-}
-
-export { displayRecipeCardsSearch };
 
 

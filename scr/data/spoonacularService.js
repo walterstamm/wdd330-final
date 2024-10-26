@@ -4,7 +4,6 @@ const BASE_URL = process.env.URL_BASE;
 export async function searchRecipesByIngredients(ingredients) {
   const response = await fetch(`${BASE_URL}/recipes/findByIngredients?ingredients=${ingredients}&apiKey=${API_KEY}`);
   const data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -17,9 +16,9 @@ export async function searchRecipeById(id) {
 
 
 export async function getRecipeForCards() {
-  // const response = await fetch(`${BASE_URL}/recipes/random?number=3&apiKey=${API_KEY}`);
-  // const data = await response.json();
-  // return data.recipes;
+  const response = await fetch(`${BASE_URL}/recipes/random?number=6&apiKey=${API_KEY}`);
+  const data = await response.json();
+  return data.recipes;
   return [
     {
         "aggregateLikes": 17134,
