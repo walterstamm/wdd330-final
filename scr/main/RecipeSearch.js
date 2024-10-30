@@ -12,8 +12,10 @@ function RecipeSearch() {
 
   const button = createElement("button", { textContent: "Search Recipes" });
 
+  
   button.addEventListener("click", async () => {
     const ingredients = input.value;
+    saveSearch(ingredients);
     const recipes = await searchRecipesByIngredients(ingredients);
     displayRecipes(recipes,ingredients);
 
@@ -21,6 +23,16 @@ function RecipeSearch() {
 
   container.appendChild(input);
   container.appendChild(button);
+
+
+  if (localStorage.getItem("searches") !== null) {
+    const savedSearches = displaySavedSearches();
+    container.appendChild(savedSearches);
+
+  }
+  
+  
+  
 
   return container;
 }
@@ -46,10 +58,42 @@ function displayRecipes(recipes,searchWords) {
   const words = createElement("h2", {textContent: `Recipes with ${searchWords}`, className: "title"});
 
 
+
+
   main.appendChild(recipeSearch);
   main.appendChild(words);
   main.appendChild(returnButton);
   main.appendChild(recipeCardsContainer);
+}
+
+
+function saveSearch(ingredients) {
+  const searches = JSON.parse(localStorage.getItem("searches")) || [];
+  if (!searches.includes(ingredients)) {
+    searches.push(ingredients);
+    localStorage.setItem("searches", JSON.stringify(searches));
+  }
+}
+
+
+
+function displaySavedSearches() {
+  const searches = JSON.parse(localStorage.getItem("searches")) || [];
+  const savedSearchesContainer = createElement("div", { className: "saved-searches" });
+  const title = createElement("h3", { textContent: "Saved Searches" });
+  
+  savedSearchesContainer.appendChild(title);
+  searches.forEach(search => {
+    const searchItem = createElement("div", { textContent: search, className: "search-item" });
+    searchItem.addEventListener("click", async () => {
+      input.value = search; // Rellenar el input con la búsqueda guardada
+      const recipes = await searchRecipesByIngredients(search);
+      displayRecipes(recipes, search);
+    });
+    savedSearchesContainer.appendChild(searchItem);
+  });
+
+  return savedSearchesContainer;
 }
 
 export default RecipeSearch;
